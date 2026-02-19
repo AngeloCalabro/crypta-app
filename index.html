@@ -21,7 +21,7 @@
     <!-- BOOT SCREEN -->
     <div id="boot" class="section">
         <div id="bootText"></div>
-        <p style="opacity:0.6;">Press any key to continue...</p>
+        <p style="opacity:0.6;">Premi un tasto per continuare...</p>
     </div>
 
     <!-- LOGIN -->
@@ -36,10 +36,10 @@
         <div id="loadingText"></div>
     </div>
 
-    <!-- APP — Minimal Hacker Clean -->
+    <!-- APP -->
     <div id="app" class="section hidden">
         <div class="terminal-clean">
-            <textarea id="inputText" rows="3" placeholder="Insert text..."></textarea>
+            <textarea id="inputText" rows="3" placeholder="Inserisci testo..."></textarea>
 
             <div class="row">
                 <label for="shiftLetter">SHIFT</label>
@@ -47,20 +47,21 @@
             </div>
 
             <div class="row buttons">
-                <button onclick="encryptText()">ENCRYPT</button>
-                <button onclick="decryptText()">DECRYPT</button>
-                <button onclick="clearTerminal()">CLEAR</button>
+                <button id="encryptBtn">ENCRYPT</button>
+                <button id="decryptBtn">DECRYPT</button>
+                <button id="clearBtn">CLEAR</button>
             </div>
 
             <div class="output" id="output"></div>
+
             <div class="row buttons">
-                <button onclick="logout()">LOGOUT</button>
+                <button id="logoutBtn">LOGOUT</button>
             </div>
         </div>
     </div>
 
 </div>
 
-<script src="script.js"></script>
+<script src="main.js"></script>
 </body>
 </html>
