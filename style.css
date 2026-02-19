@@ -57,3 +57,21 @@ button:hover { background:#00ff88; color:#000; }
     .row { flex-direction:column; align-items:stretch; }
     select { font-size:15px; padding:10px; }
 }
+
+
+/* ===== PASSWORD INPUT ===== */
+#passwordInput {
+    width: 100%;
+    background: transparent;
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    color: #00ff88;
+    padding: 12px;
+    font-family: Consolas, monospace;
+    font-size: 14px;
+    outline: none;
+    transition: 0.3s;
+}
+
+#passwordInput:focus {
+    border-color: #00ff88;
+}

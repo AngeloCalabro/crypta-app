@@ -1,67 +1,76 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Terminal Crypt</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terminal Crypt</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<canvas id="matrix"></canvas>
-<div id="flash"></div>
+    <canvas id="matrix"></canvas>
+    <div id="flash"></div>
 
-<div id="terminalBox">
+    <div id="terminalBox">
 
-    <div id="header">
-        <div>Terminal Crypt</div>
-        <div id="status">STATUS: LOCKED</div>
-    </div>
+        <div id="header">
+            <div>Terminal Crypt</div>
+            <div id="status">STATUS: LOCKED</div>
+        </div>
 
-    <!-- BOOT SCREEN -->
-    <div id="boot" class="section">
-        <div id="bootText"></div>
-        <p style="opacity:0.6;">Premi un tasto per continuare...</p>
-    </div>
+        <!-- BOOT SCREEN -->
+        <div id="boot" class="section">
+            <div id="bootText"></div>
+            <p style="opacity:0.6;">Premi un tasto per continuare...</p>
+        </div>
 
-    <!-- LOGIN -->
-    <div id="login" class="section hidden">
-        <div class="line">ENTER ACCESS KEY:</div>
-        <div id="fakePassword"></div>
-        <div id="message"></div>
-    </div>
+        <!-- LOGIN -->
+        <div id="login" class="section hidden">
+            <div class="line">ENTER ACCESS KEY:</div>
+            <input type="password" id="passwordInput" placeholder="Enter password..." autocomplete="off">
+            <div id="message"></div>
+        </div>
 
-    <!-- LOADING -->
-    <div id="loading" class="section hidden">
-        <div id="loadingText"></div>
-    </div>
+        <!-- LOADING -->
+        <div id="loading" class="section hidden">
+            <div id="loadingText"></div>
+        </div>
 
-    <!-- APP -->
-    <div id="app" class="section hidden">
-        <div class="terminal-clean">
-            <textarea id="inputText" rows="3" placeholder="Inserisci testo..."></textarea>
+        <!-- APP -->
+        <div id="app" class="section hidden">
+            <div class="terminal-clean">
+                <textarea id="inputText" rows="3" placeholder="Inserisci testo..."></textarea>
 
-            <div class="row">
-                <label for="shiftLetter">SHIFT</label>
-                <select id="shiftLetter"></select>
-            </div>
+                <div class="row">
+                    <label for="shiftLetter">SHIFT</label>
+                    <select id="shiftLetter"></select>
+                </div>
 
-            <div class="row buttons">
-                <button id="encryptBtn">ENCRYPT</button>
-                <button id="decryptBtn">DECRYPT</button>
-                <button id="clearBtn">CLEAR</button>
-            </div>
+                <div class="row buttons">
+                    <button id="encryptBtn">ENCRYPT</button>
+                    <button id="decryptBtn">DECRYPT</button>
+                    <button id="clearBtn">CLEAR</button>
+                </div>
 
-            <div class="output" id="output"></div>
+                <div class="output" id="output"></div>
 
-            <div class="row buttons">
-                <button id="logoutBtn">LOGOUT</button>
+                <div class="row buttons">
+                    <button id="logoutBtn">LOGOUT</button>
+                </div>
             </div>
         </div>
+
     </div>
 
-</div>
-
-<script src="main.js"></script>
+    <script src="main.js"></script>
+    <script>
+        const scripts = document.querySelectorAll('script[src]');
+        scripts.forEach(s => {
+            s.src = s.src + '?v=' + new Date().getTime();
+        });
+    </script>
 </body>
+
 </html>
