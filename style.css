@@ -1,0 +1,199 @@
+/* ===== GLOBAL ===== */
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    background:#000;
+    color:#00ff88;
+    font-family:Consolas, monospace;
+    overflow:hidden;
+}
+
+/* ===== MATRIX BACKGROUND ===== */
+
+canvas{
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:-1;
+}
+
+/* ===== TERMINAL CONTAINER ===== */
+
+#terminalBox{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:90%;
+    max-width:800px;
+    background:rgba(0,0,0,0.9);
+    border:1px solid rgba(0,255,136,0.4);
+    padding:40px;
+    backdrop-filter:blur(4px);
+}
+
+/* ===== HEADER ===== */
+
+#header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:14px;
+    letter-spacing:1px;
+    margin-bottom:30px;
+    padding-bottom:10px;
+    border-bottom:1px solid rgba(0,255,136,0.2);
+}
+
+#status{
+    opacity:0.7;
+}
+
+/* ===== SECTIONS ===== */
+
+.section{
+    min-height:220px;
+}
+
+.hidden{
+    display:none;
+}
+
+.line{
+    margin-bottom:15px;
+    opacity:0.8;
+}
+
+/* ===== INPUT / TEXTAREA ===== */
+
+textarea{
+    width:100%;
+    background:transparent;
+    border:1px solid rgba(0,255,136,0.3);
+    color:#00ff88;
+    padding:12px;
+    font-family:inherit;
+    font-size:14px;
+    resize:none;
+    outline:none;
+    transition:0.3s;
+}
+
+textarea:focus{
+    border-color:#00ff88;
+}
+
+/* ===== SELECT ===== */
+
+select{
+    background:transparent;
+    border:1px solid rgba(0,255,136,0.3);
+    color:#00ff88;
+    padding:8px;
+    font-family:inherit;
+    outline:none;
+    transition:0.3s;
+}
+
+select:focus{
+    border-color:#00ff88;
+}
+
+/* ===== BUTTONS ===== */
+
+button{
+    background:transparent;
+    border:1px solid rgba(0,255,136,0.4);
+    color:#00ff88;
+    padding:8px 20px;
+    font-family:inherit;
+    font-size:13px;
+    letter-spacing:1px;
+    cursor:pointer;
+    transition:0.25s;
+}
+
+button:hover{
+    background:#00ff88;
+    color:#000;
+}
+
+/* ===== TERMINAL CLEAN LAYOUT ===== */
+
+.terminal-clean{
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+}
+
+.row{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.row label{
+    font-size:13px;
+    opacity:0.7;
+}
+
+.buttons{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+/* ===== OUTPUT ===== */
+
+.output{
+    border:1px solid rgba(0,255,136,0.3);
+    padding:15px;
+    min-height:80px;
+    font-size:14px;
+    letter-spacing:1px;
+    white-space:pre-wrap;
+}
+
+/* ===== FLASH EFFECT ===== */
+
+#flash{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:#00ff88;
+    opacity:0;
+    pointer-events:none;
+}
+
+.flashActive{
+    animation:flash 0.35s ease;
+}
+
+@keyframes flash{
+    0%{opacity:1;}
+    100%{opacity:0;}
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media(max-width:600px){
+
+    #terminalBox{
+        padding:25px;
+    }
+
+    .buttons{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    button{
+        width:100%;
+    }
+}

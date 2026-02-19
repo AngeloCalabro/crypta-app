@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terminal Crypt</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<canvas id="matrix"></canvas>
+<div id="flash"></div>
+
+<div id="terminalBox">
+
+    <div id="header">
+        <div>Terminal Crypt</div>
+        <div id="status">STATUS: LOCKED</div>
+    </div>
+
+    <!-- BOOT SCREEN -->
+    <div id="boot" class="section">
+        <div id="bootText"></div>
+        <p style="opacity:0.6;">Press any key to continue...</p>
+    </div>
+
+    <!-- LOGIN -->
+    <div id="login" class="section hidden">
+        <div class="line">ENTER ACCESS KEY:</div>
+        <div id="fakePassword"></div>
+        <div id="message"></div>
+    </div>
+
+    <!-- LOADING -->
+    <div id="loading" class="section hidden">
+        <div id="loadingText"></div>
+    </div>
+
+    <!-- APP — Minimal Hacker Clean -->
+    <div id="app" class="section hidden">
+        <div class="terminal-clean">
+            <textarea id="inputText" rows="3" placeholder="Insert text..."></textarea>
+
+            <div class="row">
+                <label for="shiftLetter">SHIFT</label>
+                <select id="shiftLetter"></select>
+            </div>
+
+            <div class="row buttons">
+                <button onclick="encryptText()">ENCRYPT</button>
+                <button onclick="decryptText()">DECRYPT</button>
+                <button onclick="clearTerminal()">CLEAR</button>
+            </div>
+
+            <div class="output" id="output"></div>
+            <div class="row buttons">
+                <button onclick="logout()">LOGOUT</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
