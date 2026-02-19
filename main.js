@@ -30,7 +30,7 @@ function drawMatrix() {
 }
 drawMatrix();
 
-/* ===== BOOT SEQUENCE (desktop + touch mobile) ===== */
+/* ===== BOOT SEQUENCE ===== */
 const bootLines = [
     "> Initializing kernel...",
     "> Loading encryption modules...",
@@ -44,7 +44,7 @@ function bootSequence() {
         document.getElementById("bootText").innerText += bootLines[bootIndex++] + "\n";
         setTimeout(bootSequence, 700);
     } else {
-        // listener sia per keydown che per touch su mobile
+        // Listener sia per desktop che per mobile touch
         const continueHandler = () => {
             showLogin();
             document.removeEventListener("keydown", continueHandler);
@@ -58,28 +58,29 @@ function bootSequence() {
 function showLogin() {
     document.getElementById("boot").classList.add("hidden");
     document.getElementById("login").classList.remove("hidden");
+    // Focalizza l'input password reale su mobile
+    const pwInput = document.getElementById("passwordInput");
+    if (pwInput) pwInput.focus();
 }
 
 bootSequence();
 
 /* ===== LOGIN SYSTEM ===== */
 const ACCESS = "matrix";
-let typed = "", attempts = 0;
+let attempts = 0;
 
-document.addEventListener("keydown", e => {
-    if (document.getElementById("login").classList.contains("hidden")) return;
+const passwordInput = document.getElementById("passwordInput");
+const messageDiv = document.getElementById("message");
 
-    if (e.key === "Enter") { checkPassword(); return; }
-    if (e.key === "Backspace") typed = typed.slice(0, -1);
-    else if (e.key.length === 1) typed += e.key;
-
-    document.getElementById("fakePassword").innerText = "*".repeat(typed.length);
+passwordInput.addEventListener("keydown", e => {
+    if (e.key === "Enter") checkPassword();
 });
 
 function checkPassword() {
-    const msg = document.getElementById("message");
+    const typed = passwordInput.value;
+
     if (typed.toLowerCase() === ACCESS.toLowerCase()) {
-        msg.innerText = "ACCESS GRANTED";
+        messageDiv.innerText = "ACCESS GRANTED";
         document.getElementById("status").innerText = "STATUS: AUTHENTICATED";
         flashGreen();
         startLoading();
@@ -87,13 +88,13 @@ function checkPassword() {
         attempts++;
         if (attempts >= 3) lockScreen();
         else {
-            msg.innerText = "ACCESS DENIED";
-            typed = "";
-            document.getElementById("fakePassword").innerText = "";
+            messageDiv.innerText = "ACCESS DENIED";
+            passwordInput.value = "";
         }
     }
 }
 
+/* ===== FLASH GREEN ===== */
 function flashGreen() {
     const flash = document.getElementById("flash");
     flash.classList.add("flashActive");
@@ -129,13 +130,13 @@ function startLoading() {
 
 /* ===== CAESAR CIPHER ===== */
 const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ";
-const select = document.getElementById("shiftLetter");
+const shiftSelect = document.getElementById("shiftLetter");
 
 alphabet.split("").forEach((letter, i) => {
     const opt = document.createElement("option");
     opt.value = i;
     opt.text = letter === " " ? "[SPACE]" : letter;
-    select.appendChild(opt);
+    shiftSelect.appendChild(opt);
 });
 
 function encrypt(text, shift) {
@@ -154,17 +155,20 @@ function decrypt(text, shift) {
 
 /* ===== BUTTONS ===== */
 document.getElementById("encryptBtn").addEventListener("click", () => {
-    document.getElementById("output").innerText =
-        encrypt(document.getElementById("inputText").value, parseInt(select.value));
+    const input = document.getElementById("inputText").value;
+    document.getElementById("output").innerText = encrypt(input, parseInt(shiftSelect.value));
 });
+
 document.getElementById("decryptBtn").addEventListener("click", () => {
-    document.getElementById("output").innerText =
-        decrypt(document.getElementById("inputText").value, parseInt(select.value));
+    const input = document.getElementById("inputText").value;
+    document.getElementById("output").innerText = decrypt(input, parseInt(shiftSelect.value));
 });
+
 document.getElementById("clearBtn").addEventListener("click", () => {
     document.getElementById("inputText").value = "";
     document.getElementById("output").innerText = "";
 });
+
 document.getElementById("logoutBtn").addEventListener("click", () => location.reload());
 
 /* ===== LOCK SCREEN ===== */
